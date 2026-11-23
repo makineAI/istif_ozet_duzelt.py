@@ -1,0 +1,24 @@
+name: İstif Makineleri SEO Özet Güncelle (0 Kredi)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ozet-guncelle:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Kodu Çek
+        uses: actions/checkout@v4
+
+      - name: Python Kur
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Kütüphane Kur
+        run: pip install requests
+
+      - name: İstif Özetlerini Güncelle
+        env:
+          BASEROW_TOKEN: ${{ secrets.BASEROW_TOKEN }}
+        run: python -u istif_ozet_duzelt.py
