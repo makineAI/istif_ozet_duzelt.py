@@ -1,0 +1,1 @@
+# istif_ozet_duzelt.py
