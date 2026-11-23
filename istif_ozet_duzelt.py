@@ -312,12 +312,13 @@ def main():
     while True:
         url = (
             f"https://api.baserow.io/api/database/rows/table/{BASEROW_TABLE_ID}/"
-            f"?user_field_names=true&order_by=id&size=200&page={sayfa}"
+            f"?user_field_names=true&size=200&page={sayfa}"
         )
         res = baserow_istek_at("GET", url)
         if res is None or res.status_code != 200:
             kod = res.status_code if res is not None else "Bağlantı Yok"
-            print(f"❌ Sayfa {sayfa} okunamadı ({kod}). İşlem durduruldu.")
+            detay = res.text[:250] if res is not None else ""
+            print(f"❌ Sayfa {sayfa} okunamadı ({kod}): {detay}")
             break
 
         veri = res.json()
